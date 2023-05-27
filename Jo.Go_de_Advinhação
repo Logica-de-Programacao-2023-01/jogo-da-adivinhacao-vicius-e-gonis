@@ -1,0 +1,48 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+)
+
+func main() {
+	outra := true
+	var matriz [][]int
+
+	for outra {
+		Ntentativas := []int{}
+		numero := rand.Intn(100) + 1
+		fmt.Println(" ♣ Jo.Go de Advinhação ♣")
+		fmt.Println("Tente adivinhar o número entre 1-100.")
+
+		for {
+			var x int
+			fmt.Print("Digite um número: ")
+			fmt.Scan(&x)
+
+			Ntentativas = append(Ntentativas, x)
+
+			if x < numero {
+				fmt.Println("Tente um número maior.")
+			} else if x > numero {
+				fmt.Println("Tente um número menor.")
+			} else {
+				fmt.Println("Você acertou! ☺ ")
+				fmt.Println("Você utilizou ", len(Ntentativas), " tentativas.")
+				break
+			}
+		}
+
+		matriz = append(matriz, Ntentativas)
+
+		fmt.Print("Deseja jogar novamente? (s/n): ")
+		var resposta string
+		fmt.Scan(&resposta)
+		outra = (resposta == "s")
+	}
+
+	fmt.Println("☺ Suas Tentativas ☺ ")
+	for i, tentativas := range matriz {
+		fmt.Println("Jogo", i+1, ":", len(tentativas), "tentativas")
+	}
+}
